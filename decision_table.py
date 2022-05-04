@@ -96,22 +96,6 @@ class DecisionTable:
             return True
         return False
 
-    def main_recursion(self) -> None:
-        # Doesn't work for larger datasets
-        if not self._stop_criterion_met():
-            chosen, self.column = self._choose_attribute(self.attributes_appearance[:-1])
-            self.decision = chosen
-            for attribute in chosen:
-                new_table = self._create_new_table(attribute, self.column)
-                self.children.append(DecisionTable(new_table, attribute))
-        self.answer[self.column] = {}
-        for children in self.children:
-            children.main()
-            if type(children.decision) == str:
-                self.answer[self.column][children.attribute] = children.decision
-            else:
-                self.answer = self.answer | children.answer
-
     def main(self) -> None:
         global DTS
         if not self._stop_criterion_met():
