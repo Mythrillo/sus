@@ -152,7 +152,7 @@ class Node:
     decison_class = None
 
 
-def _show_tree(tree, indent):
+def _show_tree(tree, indent) -> None:
     if tree.attribute is not None:
         print(" " * indent, end="")
         if tree.value:
@@ -165,7 +165,7 @@ def _show_tree(tree, indent):
         print(tree.value, "->", tree.decision_class)
 
 
-def _build_tree(answer):
+def _build_tree(answer) -> Node:
     w = Node()
     w.children = []
     key, element = answer.popitem()
